@@ -3,12 +3,34 @@
 
 int Team::lastId = 0;
 
-Team::Team(string name, SportiveCategory category, vector <Player> players)
+Team::Team(string name, SportiveCategory category)
 {
     this->id = generateId();
     this->name = name;
     this->category = CategoryHelper::parseCategoryEnumToString(category);
-    this->players = players;    
+}
+
+void Team::addPlayer(Player player)
+{
+    players.push_back(player);
+}
+
+void Team::removePlayer(int id)
+{
+    auto playerIndex = 0;
+
+    for ( int i = 0; i < players.size(); i++)
+    {
+        if(players[i].getId() == id)
+        {
+            playerIndex = i;
+        }
+    }
+    if(playerIndex > 0) {
+        players.erase(players.begin()+playerIndex);
+        return;
+    }
+    cout << "team is'nt registered" << id << endl;
 }
 
 void Team::showTotals() 
@@ -31,7 +53,7 @@ void Team::showTotals()
 
 void Team::showGeneralRelatory()
 {
-    cout << "----- Team Relatory -----\n" << endl;
+    cout << "----- Team Relatory -----" << endl;
     cout << "Team: " << name << endl;
     for( int i = 0; i < players.size(); i++)
     {
@@ -60,6 +82,11 @@ int Team::getId()
     return this->id;
 }
 
+string Team::getName()
+{
+    return this->name;
+}
+
 string Team::getCategory()
 {
     return this->category;
@@ -68,6 +95,11 @@ string Team::getCategory()
 void Team::setCategory(SportiveCategory category)
 {
     this->category = CategoryHelper::parseCategoryEnumToString(category);
+}
+
+vector <Player> Team::getPlayers()
+{
+    return this->players;
 }
 
 

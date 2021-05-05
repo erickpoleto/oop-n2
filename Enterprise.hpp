@@ -10,13 +10,14 @@ using namespace std;
 class Enterprise
 {
 public:
-    Enterprise(string name, vector <Team> teams);
+    Enterprise(string name);
     
     string getName();
     void setName(string name);
 
     void addTeam(Team team);
     void removeTeam(int id);
+    void showPlayer(int id);
     void showPlayers();
     void showFinancialRelatory();
 

@@ -1,12 +1,20 @@
 #include "Employee.hpp"
+#include "DateHelper.hpp"
 
-Employee::Employee(string name, string DN, string nationality, float salary)
+Employee::Employee(string name, Date birthdate, string nationality, float salary)
 {
     this->name = name;
-    this->DN = DN;
+    this->birthdate = birthdate;
     this->nationality = nationality;
     this->bruteSalary = salary;
     this->salary = calcNetSalary(salary);
+}
+
+int Employee::calcAge() {
+    time_t t = time(0);
+    struct tm *tm = localtime(&t);
+    Date now(tm->tm_mday, tm->tm_mon+1, tm->tm_year+1900);
+    return DateHelper::diffBetweenDates(now, this->birthdate);
 }
 
 float Employee::calcNetSalary(float salary)
@@ -44,9 +52,9 @@ string Employee::getName()
     return this->name;
 }
 
-string Employee::getDN()
+Date Employee::getBirthdate()
 {
-    return this->DN;
+    return this->birthdate;
 }
 
 string Employee::getNationality()
@@ -70,9 +78,9 @@ void Employee::setName(string name)
 }
 
 
-void Employee::setDN(string DN)
+void Employee::setBirthdate(Date birthdate)
 {
-    this->DN = DN;
+    this->birthdate = birthdate;
 }
 
 void Employee::setNationality(string nationality)

@@ -2,26 +2,50 @@
 #include "Team.hpp"
 #include "Enterprise.hpp"
 #include "SportiveCategory.hpp"
+#include "DateHelper.hpp"
 
 int main() 
 {
-    Player player("erick", "12/07/1699", "brazilian", SportiveCategory::PROFESSIONAL, 1300.00);
-    Player player1("Jhon", "12/08/1699", "britsh", SportiveCategory::PROFESSIONAL, 1500.00);
-    Player player2("Pueblo", "12/09/1699", "american", SportiveCategory::PROFESSIONAL, 3000.00);
+    //cria jogadores
+    Player player("erick", Date(5, 3, 1999), "brazilian", SportiveCategory::PROFESSIONAL, 1300.00);
+    Player player1("Jhon", Date(7, 5, 1995), "britsh", SportiveCategory::PROFESSIONAL, 1500.00);
+    Player player2("Pueblo", Date(4, 6, 1990), "american", SportiveCategory::PROFESSIONAL, 3000.00);
+
+    //cria times
+    Team team("Spain", SportiveCategory::PROFESSIONAL);
+    Team team1("France", SportiveCategory::PROFESSIONAL);
+
+    //add jogadores aos time
+    team.addPlayer(player);
+    team.addPlayer(player1);
+    team1.addPlayer(player2);
     
-    vector <Player> players;
-    players.push_back(player);
-    players.push_back(player1);
-    players.push_back(player2);
+    // mostra relatorio geral dos time
+    team.showGeneralRelatory();
+    cout << "" << endl;
+    team1.showGeneralRelatory();
+    cout << "" << endl;
 
-    Team team("main", SportiveCategory::PROFESSIONAL, players);
-    Team team1("second", SportiveCategory::PROFESSIONAL, players);
+    // mostra relatorio financeiro dos times
+    team.showFinancialRelatory();
+    cout << "" << endl;
+    team1.showFinancialRelatory();
+    cout << "" << endl;
 
-    vector <Team> teams;
-    teams.push_back(team);
-    teams.push_back(team1);
+    Enterprise enterprise("Great Enterprise");
 
-    Enterprise enterprise("Great Enterprise", teams);
+    //add times a empresa
+    enterprise.addTeam(team);
+    enterprise.addTeam(team1);
 
+    //mostra jogadores da empresa
+    enterprise.showPlayers();
+    cout << "" << endl;
+
+    //mostra jogador pelo id
+    enterprise.showPlayer(player1.getId());
+    cout << "" << endl;
+
+    //mostra relatorio financeiro da empresa
     enterprise.showFinancialRelatory();
 }

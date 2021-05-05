@@ -12,3 +12,4 @@ string CategoryHelper::parseCategoryEnumToString(SportiveCategory category)
         return "Base";
     }
 }
+

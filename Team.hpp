@@ -11,15 +11,17 @@ using namespace std;
 class Team
 {
 public:
-    Team(string name, SportiveCategory category, vector <Player> players);
+    Team(string name, SportiveCategory category);
     
     int getId();
     string getName();
     string getCategory();
     vector <Player> getPlayers();
+
     void setName(string name);
     void setCategory(SportiveCategory category);
-    void setPlayers(vector<Player> players);
+    void addPlayer(Player player);
+    void removePlayer(int id);
 
     void showTotals();
     void showGeneralRelatory();

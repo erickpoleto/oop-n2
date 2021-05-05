@@ -2,24 +2,26 @@
 #define Employee_hpp
 
 #include<iostream>
+#include "Date.hpp"
 using namespace std;
+
 
 class Employee
 {
 public:
-    Employee(string name, string DN, string nationality, float salary);
+    Employee(string name, Date birthdate, string nationality, float salary);
     
-    float calcAge();
+    int calcAge();
     float calcRetire();
 
     string getName();
-    string getDN();
+    Date getBirthdate();
     string getNationality();
     float getSalary();
     float getBruteSalary();
     
     void setName(string name);
-    void setDN(string dn);
+    void setBirthdate(Date birthdate);
     void setNationality(string nationality);
     void setSalary(float salary);
 
@@ -28,7 +30,7 @@ public:
 
 private:
     string name;
-    string DN;
+    Date birthdate;
     string nationality;
     float salary;
     float bruteSalary;

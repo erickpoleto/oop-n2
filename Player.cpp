@@ -3,17 +3,26 @@
 
 int Player::lastId = 0;
 
-Player::Player(string name, string DN, string nationality, SportiveCategory category, double salary)
-    : Employee(name, DN, nationality, salary)
+Player::Player(string name, Date birthdate, string nationality, SportiveCategory category, double salary)
+    : Employee(name, birthdate, nationality, salary)
 {
     this->id = generateId();
     this->category = CategoryHelper::parseCategoryEnumToString(category);
 }
 
+
+int Player::calcRetire() {
+    const int retireYear = 35;
+    return (retireYear - this->calcAge()) > 0 ? 
+        (retireYear - this->calcAge()) : 0;
+}
+
 void Player::printInfo()
 {
     cout << "player: " << getName() << " - " 
-         << "DN: " << getDN() << " - "
+         << "birthdate: " << getBirthdate().toBrDateString() << " - "
+         << "age: " << this->calcAge() << " - "
+         << "years to retire: " << this->calcRetire() << " - "
          << "nationality: " << getNationality() << " - "
          << "category: " << getCategory() << endl;
 }
@@ -29,6 +38,11 @@ int Player::generateId()
 {
     lastId++;
     return lastId;
+}
+
+int Player::getId()
+{
+    return this->id;
 }
 
 string Player::getCategory()
