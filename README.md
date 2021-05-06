@@ -11,3 +11,6 @@ g++ *.cpp -o main
 ```
 ./main
 ```
+
+### Links
+https://youtu.be/xd3tvLdn1pg
